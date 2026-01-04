@@ -20,6 +20,9 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isOrdered, setIsOrdered] = useState(false);
 
+  const gst = totalPrice * 0.05;
+  const finalTotal = totalPrice + gst;
+
   const handlePlaceOrder = (e: React.FormEvent) => {
     e.preventDefault();
     setIsOrdered(true);
