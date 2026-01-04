@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { totalItems, totalPrice } = useCart();
+  const gst = totalPrice * 0.05;
+  const finalTotal = totalPrice + gst;
 
   return (
     <main className="min-h-screen">
@@ -98,7 +100,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-sm uppercase tracking-wider opacity-80">View Cart</span>
-                <span className="text-xl">₹{totalPrice.toFixed(0)}</span>
+                <span className="text-xl">₹{finalTotal.toFixed(0)}</span>
               </div>
             </Button>
           </motion.div>

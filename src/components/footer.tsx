@@ -44,18 +44,18 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-serif font-bold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-sm text-zinc-400">
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-brand-red" />
-                <span>+91 98765 43210</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-brand-red" />
-                <span>hello@foodpanda.in</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-brand-red" />
-                <span>45, MG Road, Shivaji Nagar, Bengaluru, KA - 560001</span>
-              </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-4 h-4 text-brand-red" />
+                  <span>+91 80234 56789</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-brand-red" />
+                  <span>orders@foodpanda.in</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <MapPin className="w-4 h-4 text-brand-red" />
+                  <span>Plot 23, 4th Cross, 100ft Road, Indiranagar, Bengaluru, KA - 560038</span>
+                </li>
             </ul>
           </div>
 

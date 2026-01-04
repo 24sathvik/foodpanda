@@ -20,16 +20,19 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [isOrdered, setIsOrdered] = useState(false);
 
-  const handlePlaceOrder = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsOrdered(true);
-    setTimeout(() => {
-      clearCart();
-      setIsOrdered(false);
-      setIsCheckingOut(false);
-      onOpenChange(false);
-    }, 3000);
-  };
+    const gst = totalPrice * 0.05;
+    const finalTotal = totalPrice + gst;
+
+    const handlePlaceOrder = (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsOrdered(true);
+      setTimeout(() => {
+        clearCart();
+        setIsOrdered(false);
+        setIsCheckingOut(false);
+        onOpenChange(false);
+      }, 3000);
+    };
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -64,10 +67,10 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
                         <span>₹{(item.price * item.quantity).toFixed(0)}</span>
                       </div>
                     ))}
-                    <div className="border-t mt-2 pt-2 flex justify-between font-bold text-brand-red">
-                      <span>Total Paid</span>
-                      <span>₹{totalPrice.toFixed(0)}</span>
-                    </div>
+                      <div className="border-t mt-2 pt-2 flex justify-between font-bold text-brand-red">
+                        <span>Total Paid</span>
+                        <span>₹{finalTotal.toFixed(0)}</span>
+                      </div>
                   </div>
                 </motion.div>
               ) : isCheckingOut ? (
@@ -100,18 +103,22 @@ export function CartDrawer({ open, onOpenChange }: { open: boolean; onOpenChange
                     </div>
                     <div className="pt-4">
                       <div className="bg-brand-red/5 p-4 rounded-xl border border-brand-red/10 mb-6">
-                        <div className="flex justify-between items-center mb-2 text-sm">
-                          <span className="text-muted-foreground">Subtotal</span>
-                          <span>₹{totalPrice.toFixed(0)}</span>
-                        </div>
-                        <div className="flex justify-between items-center mb-2 text-sm">
-                          <span className="text-muted-foreground">Delivery Fee</span>
-                          <span className="text-green-600 font-bold">FREE</span>
-                        </div>
-                        <div className="flex justify-between items-center pt-2 border-t border-brand-red/10">
-                          <span className="font-bold">Total Amount</span>
-                          <span className="text-xl font-bold text-brand-red">₹{totalPrice.toFixed(0)}</span>
-                        </div>
+                          <div className="flex justify-between items-center mb-2 text-sm">
+                            <span className="text-muted-foreground">Subtotal</span>
+                            <span>₹{totalPrice.toFixed(0)}</span>
+                          </div>
+                          <div className="flex justify-between items-center mb-2 text-sm">
+                            <span className="text-muted-foreground">GST (5%)</span>
+                            <span>₹{gst.toFixed(0)}</span>
+                          </div>
+                          <div className="flex justify-between items-center mb-2 text-sm">
+                            <span className="text-muted-foreground">Delivery Fee</span>
+                            <span className="text-green-600 font-bold">FREE</span>
+                          </div>
+                          <div className="flex justify-between items-center pt-2 border-t border-brand-red/10">
+                            <span className="font-bold">Total Amount</span>
+                            <span className="text-xl font-bold text-brand-red">₹{finalTotal.toFixed(0)}</span>
+                          </div>
                       </div>
                       <Button type="submit" className="w-full bg-brand-red hover:bg-brand-red/90 text-white h-14 rounded-xl text-lg font-bold">
                         Confirm & Place Order
